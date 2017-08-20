@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>TrafficLight</title>
+	<link rel="stylesheet" type="text/css" href="TrafficLight.css">
+	<script type="text/javascript" src="jquery-3.2.1.min.js"></script>
+	<script type="text/javascript" src="jquery.countdown.min.js"></script>
+	<!-- <script type="text/javascript" src="TrafficLight.js"></script> -->
+	<!-- <style type="text/css" href="TrafficLight.css"></style> -->
+</head>
+<body>
+<div class="border">
+	<div class="red" id="red"></div>
+	<div class="orange" id="orange"></div>
+	<div class="green" id="green"></div>
+</div>
+<input type="button" name="click" id="start" value="Start">
+<div id="getting-started"></div>
+<script type="text/javascript">
+function timerfunc(time) {
+	console.log(time);
+  	if (time != 0){
+  		time--;
+  	}
+  	return time;
+  };
+// $("#orange")
+// .countdown("11", function(event) {
+//   $(this).text(
+//     event.strftime('%S')
+//   ).css('color', 'red');
+// });
+// $('#orange').text('hello');
+
+// console.log(timer);
+var speed = 100;
+$('#start').click(redInterval);
+function redInterval() {
+	var timer = 10;
+	$('#red').css('opacity','1');
+	$('#orange').css('background-color', '#594d00')
+	$('#orange').css('color', '#ff0000');
+	$('#green').css('opacity', '0.3')
+	var redInterval = setInterval(function() {
+	$('#orange').text(timer);
+	console.log(timer);
+	if (timer < 4) {
+		$('#red').css('opacity', '1')
+		setTimeout(function() {$('#red').css('opacity', '0.5');}, speed*5)
+	}
+	if (timer != 0){
+  		timer--;
+  	}
+  	else{
+  		clearInterval(redInterval);
+  		window.setTimeout(orangeInterval,speed*10);
+  	}
+  	
+}, speed*10)
+}
+function orangeInterval() {
+	$('#red').css('opacity','0.5');
+	$('#orange').text('');
+	$('#orange').css('background-color', '#ffc300');
+	setTimeout(function() {$('#orange').css('opacity', '0.5');}, speed*5)
+	var count = 3;
+	var thisInterval = setInterval(function() {
+		$('#orange').css('opacity', '1')
+		setTimeout(function() {$('#orange').css('opacity', '0.5');}, speed*5)
+		if (count != 0){
+			count--;
+		}
+		else{
+			clearInterval(thisInterval);
+		}
+	}, speed*10);
+};
+function greenInterval() {
+		var timer = 10;
+	$('#red').css('opacity','1');
+	$('#orange').css('background-color', '#594d00')
+	$('#orange').css('color', '#ff0000');
+	$('#green').css('opacity', '0.3')
+	var redInterval = setInterval(function() {
+	$('#orange').text(timer);
+	console.log(timer);
+	if (timer != 0){
+  		timer--;
+  	}
+  	else{
+  		clearInterval(redInterval);
+  		window.setTimeout(orangeInterval,speed*10);
+  	}
+  	
+}, speed*2)
+}
+// console.log(timer);
+	// setInterval(function(){
+// console.log(timer);
+// console.log('hello');
+// $('#red').css('opacity','1', 'color', 'yellow')
+// var timer = 4;
+
+	// if(timer != 0){
+		// $('#orange').text(timer.toString()).css('color', '#ff0000');
+		// timer -=1;
+	// }
+// }, 500)
+// });
+  
+</script>
+</body>
+</html>
